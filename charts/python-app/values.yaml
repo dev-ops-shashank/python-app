@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: learningdevops33/python-app
   pullPolicy: IfNotPresent
-  tag: 1a5fac
+  tag: 96a23f
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
