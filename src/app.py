@@ -15,7 +15,7 @@ def details():
     # return '<h1>Hello, World! from Shashank</h1>'
     return jsonify({
         "hostname": socket.gethostname(),
-        'message': 'You are doing great, little human!',
+        'message': 'You are doing great, little human!!',
         "time" :  datetime.now().strftime("%d %B,%Y %H:%M:%S")
         })
 

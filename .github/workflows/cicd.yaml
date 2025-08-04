@@ -1,4 +1,4 @@
-name: ci
+name: cicd
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  docker:
-    runs-on: self-hosted
+  ci:
+    runs-on: ubuntu-latest
     steps:
 
       - name: Shorten commit id
@@ -31,10 +31,10 @@ jobs:
     outputs:
       commit_id: ${{ env.COMMIT_ID }}
 
-  # cd:
-  #   needs: ci
-  #   runs-on: self-hosted
-  #   steps:
+  cd:
+    needs: ci
+    runs-on: self-hosted
+    steps:
 
   #     - uses: actions/checkout@v3
 
@@ -57,12 +57,12 @@ jobs:
   #         chmod +x argocd
   #         sudo mv ./argocd /usr/local/bin/argocd
 
-  #     - name: Argocd app sync
-  #       shell: bash
-  #       run: |
-  #         argocd login argocd-server.argocd \
-  #           --insecure  \
-  #           --grpc-web \
-  #           --username admin \
-  #           --password  ${{ secrets.ARGOCD_PASSWORD }}
-  #         argocd app sync python-app
+      - name: Argocd app sync
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \
+            --insecure  \
+            --grpc-web \
+            --username admin \
+            --password  ${{ secrets.ARGOCD_PASSWORD }}
+          argocd app sync python-app
